@@ -12,23 +12,19 @@ public class RecursiveLister extends JFrame {
     private JScrollPane scrollPane;
 
     public RecursiveLister() {
-        // Initialize frame
         setTitle("Recursive Lister");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
         setLocationRelativeTo(null);
 
-        // Create components
         titleLabel = new JLabel("Recursive Lister");
         startButton = new JButton("Start");
         quitButton = new JButton("Quit");
         resultTextArea = new JTextArea();
         scrollPane = new JScrollPane(resultTextArea);
 
-        // Set up layout manager
         setLayout(new BorderLayout());
 
-        // Add components to the frame
         add(titleLabel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -37,7 +33,6 @@ public class RecursiveLister extends JFrame {
         buttonPanel.add(quitButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        // Set up action listeners
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +60,7 @@ public class RecursiveLister extends JFrame {
     }
 
     private void displayFiles(File directory) {
-        resultTextArea.setText(""); // Clear previous results
+        resultTextArea.setText(""); 
 
         if (directory.isDirectory()) {
             listFiles(directory);
@@ -80,7 +75,7 @@ public class RecursiveLister extends JFrame {
         if (files != null) {
             for (File file : files) {
                 if (file.isDirectory()) {
-                    listFiles(file); // Recursively list files in subdirectories
+                    listFiles(file); 
                 } else {
                     resultTextArea.append(file.getAbsolutePath() + "\n");
                 }
@@ -92,7 +87,6 @@ public class RecursiveLister extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                // Set look and feel
                 try {
                     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
